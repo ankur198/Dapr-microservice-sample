@@ -1,0 +1,74 @@
+version: "3.7"
+services:
+  ############################
+  # Gateway app + Dapr sidecar
+  ############################
+  gateway:
+    build: ./Src/ApiGateway
+    ports:
+      - "3000:80"
+    depends_on:
+      - redis
+      - placement
+      - user-dapr
+    networks:
+      - hello-dapr
+  gateway-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+     "-app-id", "gateway",
+     "-app-port", "80",
+     "-placement-host-address", "placement:50006",
+     "-dapr-http-port", "50123",
+     "-components-path", "/components"]
+    volumes:
+        - "./components/:/components"
+    depends_on:
+      - gateway
+    network_mode: "service:gateway"
+  ############################
+  # User app + Dapr sidecar
+  ############################
+  user:
+    build: ./Src/UserService
+    ports:
+      - "50001:50001"
+    depends_on:
+      - redis
+      - placement
+    networks:
+      - hello-dapr
+  user-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+     "-app-id", "user",
+     "-app-port", "80",
+     "-placement-host-address", "placement:50006",
+     "-dapr-grpc-port", "50001",
+     "-components-path", "/components"]
+    volumes:
+        - "./components/:/components"
+    depends_on:
+      - user
+    network_mode: "service:user"
+  ############################
+  # Dapr placement service
+  ############################
+  placement:
+    image: "daprio/dapr"
+    command: ["./placement", "-port", "50006"]
+    ports:
+      - "50006:50006"
+    networks:
+      - hello-dapr
+  ############################
+  # Redis state store
+  ############################
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6380:6379"
+    networks:
+      - hello-dapr
+networks:
+  hello-dapr:
