@@ -6,7 +6,7 @@ services:
   gateway:
     build: ./Src/ApiGateway
     ports:
-      - "3000:80"
+      - "5000:80"
     depends_on:
       - redis
       - placement
@@ -31,8 +31,6 @@ services:
   ############################
   user:
     build: ./Src/UserService
-    ports:
-      - "50001:50001"
     depends_on:
       - redis
       - placement
@@ -44,7 +42,6 @@ services:
      "-app-id", "user",
      "-app-port", "80",
      "-placement-host-address", "placement:50006",
-     "-dapr-grpc-port", "50001",
      "-components-path", "/components"]
     volumes:
         - "./components/:/components"
