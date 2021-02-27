@@ -24,6 +24,15 @@ namespace UserService.Controllers
         }
 
         [HttpGet]
+        public async Task<ActionResult<List<User>>> Get([FromServices] DaprClient daprClient)
+        {
+            var totalUsers = await daprClient.GetStateAsync<int>(StoreName, "nextId");
+            var tasks = Enumerable.Range(0, totalUsers).Select(x => daprClient.GetStateAsync<User>(StoreName, x.ToString())).ToArray();
+            await Task.WhenAll(tasks);
+            return tasks.Select(x => x.Result).ToList();
+        }
+
+        [HttpGet]
         [Route("{userId}")]
         public async Task<ActionResult<User>> Get(int userId, [FromServices] DaprClient daprClient)
         {
