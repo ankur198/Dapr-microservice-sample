@@ -1,7 +1,23 @@
 {
     "Routes": [
         {
-            "DownstreamPathTemplate": "/v1.0/invoke/user/method/{everything}",
+            "DownstreamPathTemplate": "/v1.0/invoke/user/method/user",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 50123
+                }
+            ],
+            "UpstreamPathTemplate": "/user",
+            "UpstreamHttpMethod": [
+                "Options",
+                "Get",
+                "Post"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/v1.0/invoke/user/method/user/{everything}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
@@ -16,6 +32,21 @@
                 "Post",
                 "Put",
                 "Delete"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/v1.0/invoke/notification/method/notification/{userId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 50123
+                }
+            ],
+            "UpstreamPathTemplate": "/notification/{userId}",
+            "UpstreamHttpMethod": [
+                "Options",
+                "Get"
             ]
         }
     ],
