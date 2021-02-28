@@ -80,6 +80,31 @@ services:
       - notification
     network_mode: "service:notification"
   ############################
+  # Catalog app + Dapr sidecar
+  ############################
+  catalog:
+    build: ./Src/CatalogService
+    depends_on:
+      - redis
+      - placement
+      - zipkin
+    networks:
+      - hello-dapr
+  catalog-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+     "-app-id", "catalog",
+     "-app-port", "80",
+     "-placement-host-address", "placement:50006",
+     "-config", "/configuration/tracing.yml",
+     "-components-path", "/components"]
+    volumes:
+        - "./components/:/components"
+        - "./configuration/:/configuration"
+    depends_on:
+      - catalog
+    network_mode: "service:catalog"
+  ############################
   # Dapr placement service
   ############################
   placement:

@@ -48,6 +48,36 @@
                 "Options",
                 "Get"
             ]
+        },
+        {
+            "DownstreamPathTemplate": "/v1.0/invoke/catalog/method/catalog",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 50123
+                }
+            ],
+            "UpstreamPathTemplate": "/catalog",
+            "UpstreamHttpMethod": [
+                "Options",
+                "Get"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/v1.0/invoke/catalog/method/catalog/job/{jobId}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 50123
+                }
+            ],
+            "UpstreamPathTemplate": "/catalog/job/{jobId}",
+            "UpstreamHttpMethod": [
+                "Options",
+                "Get"
+            ]
         }
     ],
     "GlobalConfiguration": {
