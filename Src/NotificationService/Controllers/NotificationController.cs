@@ -45,7 +45,7 @@ namespace NotificationService.Controllers
         {
             var stateUser = await client.GetStateEntryAsync<List<Notification>>(StoreName, $"user-{userId}");
             stateUser.Value ??= new();
-            stateUser.Value.Add(new Notification(payload, type));
+            stateUser.Value.Add(new Notification(payload, type, DateTime.Now));
             await stateUser.SaveAsync();
         }
     }

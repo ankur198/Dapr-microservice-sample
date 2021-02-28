@@ -11,9 +11,9 @@ namespace NotificationService.Models
         public object Payload { get; }
         public string Type { get; }
 
-        public Notification(object payload, string type)
+        public Notification(object payload, string type, DateTime timeStamp)
         {
-            Timestamp = DateTime.Now;
+            Timestamp = timeStamp;
             Payload = payload;
             Type = type;
         }
