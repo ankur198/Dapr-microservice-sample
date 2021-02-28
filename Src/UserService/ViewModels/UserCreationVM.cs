@@ -8,6 +8,8 @@ namespace UserService.ViewModels
         [Required]
         public string? Name { get; set; }
         [Required]
+        public string? Location { get; set; }
+        [Required]
         public UserType Type { get; set; }
     }
 }

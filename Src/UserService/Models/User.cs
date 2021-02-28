@@ -8,6 +8,8 @@ namespace UserService.Models
         public int Id { get; set; }
         [Required]
         public string? Name { get; set; }
+        [Required]
+        public string? Location { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         [Required]
         public UserType Type { get; set; }

@@ -17,6 +17,7 @@ namespace UserService.Controllers
 
         private readonly ILogger<UserController> _logger;
         public const string StoreName = "statestore";
+        public const string PubSubName = "pubsub";
 
         public UserController(ILogger<UserController> logger)
         {
@@ -48,11 +49,14 @@ namespace UserService.Controllers
         public async Task<ActionResult<User>> CreateAsync([FromBody] UserCreationVM userVM, [FromServices] DaprClient daprClient)
         {
             _logger.LogInformation("Create a new user");
-            var user = new User { Name = userVM.Name, Type = userVM.Type };
+            var user = new User { Name = userVM.Name, Type = userVM.Type, Location = userVM.Location };
             user.Id = await daprClient.GetStateAsync<int>(StoreName, "nextId");
             user.CreatedOn = DateTime.Now;
             await daprClient.SaveStateAsync<User>(StoreName, user.Id.ToString(), user);
             await daprClient.SaveStateAsync<int>(StoreName, "nextId", user.Id + 1);
+
+            // generate event
+            await daprClient.PublishEventAsync<User>(PubSubName, "newuser", user);
 
             return Created(user.Id.ToString(), user);
         }
