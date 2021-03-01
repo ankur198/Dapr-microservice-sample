@@ -14,12 +14,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/user",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/user",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"user"
 							]
@@ -33,12 +31,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/user/{{userId}}",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/user/{{userId}}",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"user",
 								"{{userId}}"
@@ -62,12 +58,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/user",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/user",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"user"
 							]
@@ -90,12 +84,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/user",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/user",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"user"
 							]
@@ -114,15 +106,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/notification/{{userId}}",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/notification/0",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"notification",
-								"{{userId}}"
+								"0"
 							]
 						}
 					},
@@ -139,12 +129,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/Catalog",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/Catalog",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"Catalog"
 							]
@@ -158,12 +146,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/Catalog/job/0",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/Catalog/job/0",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"Catalog",
 								"job",
@@ -184,12 +170,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/order/all",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/order/all",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"order",
 								"all"
@@ -204,12 +188,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/order/{{userId}}/my",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/order/{{userId}}/my",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"order",
 								"{{userId}}",
@@ -225,12 +207,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/order/{{userId}}/placeOrder/0",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/order/{{userId}}/placeOrder/0",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"order",
 								"{{userId}}",
@@ -247,18 +227,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/order/admin/{{professionalId}}/assign/0",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/order/admin/{{professionalId}}/assign/1",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"order",
 								"admin",
 								"{{professionalId}}",
 								"assign",
-								"0"
+								"1"
 							]
 						}
 					},
@@ -270,12 +248,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/order/professional/{{professionalId}}",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/order/professional/{{professionalId}}",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"order",
 								"professional",
@@ -291,18 +267,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/order/professional/{{professionalId}}/approve/0",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/order/professional/{{professionalId}}/approve/2",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"order",
 								"professional",
 								"{{professionalId}}",
 								"approve",
-								"0"
+								"2"
 							]
 						}
 					},
@@ -314,18 +288,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/order/professional/{{professionalId}}/complete/0",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/order/professional/{{professionalId}}/complete/2",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"order",
 								"professional",
 								"{{professionalId}}",
 								"complete",
-								"0"
+								"2"
 							]
 						}
 					},
@@ -337,12 +309,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/order/professional/{{professionalId}}/reject/1",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/order/professional/{{professionalId}}/reject/1",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "5000",
 							"path": [
 								"order",
 								"professional",
