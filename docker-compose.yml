@@ -5,15 +5,11 @@ services:
   ############################
   placement:
     image: "daprio/dapr"
-    ports:
-      - "50006:50006"
   ############################
   # Redis state store
   ############################
   redis:
     image: "redis:alpine"
-    ports:
-      - "6380:6379"
   ###########################
   # Zipkin state store
   ###########################
