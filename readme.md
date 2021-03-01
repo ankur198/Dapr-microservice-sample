@@ -2,7 +2,7 @@
 
 To use images from docker hub: `docker-compose up`
 
-To build images `docker-compose up --build`
+To build images `docker-compose -f docker-compose.yml -f docker-compose.dev.yml --build`
 
 ## Windows: Extra requirement
 

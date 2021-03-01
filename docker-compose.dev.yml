@@ -26,6 +26,7 @@ services:
   # Gateway app + Dapr sidecar
   ############################
   gateway:
+    build: ./Src/ApiGateway
     networks:
       - hello-dapr
   gateway-dapr:
@@ -44,6 +45,7 @@ services:
   # User app + Dapr sidecar
   ############################
   user:
+    build: ./Src/UserService
     networks:
       - hello-dapr
   user-dapr:
@@ -61,6 +63,7 @@ services:
   # Order app + Dapr sidecar
   ############################
   order:
+    build: ./Src/OrderService
     networks:
       - hello-dapr
   order-dapr:
@@ -78,6 +81,7 @@ services:
   # Notification app + Dapr sidecar
   ############################
   notification:
+    build: ./Src/NotificationService
     networks:
       - hello-dapr
   notification-dapr:
@@ -95,6 +99,7 @@ services:
   # Catalog app + Dapr sidecar
   ############################
   catalog:
+    build: ./Src/CatalogService
     networks:
       - hello-dapr
   catalog-dapr:
