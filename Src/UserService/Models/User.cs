@@ -15,7 +15,7 @@ namespace UserService.Models
         public UserType Type { get; set; }
         public enum UserType
         {
-            Consumer, Professional, Admin
+            Consumer, Professional
         }
     }
 

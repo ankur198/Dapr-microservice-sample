@@ -42,7 +42,7 @@ namespace UserService.Controllers
             {
                 return user;
             }
-            return NotFound();
+            return null;
         }
 
         [HttpPost]

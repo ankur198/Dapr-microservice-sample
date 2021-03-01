@@ -35,6 +35,24 @@
             ]
         },
         {
+            "DownstreamPathTemplate": "/v1.0/invoke/order/method/order/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 50123
+                }
+            ],
+            "UpstreamPathTemplate": "/order/{everything}",
+            "UpstreamHttpMethod": [
+                "Options",
+                "Get",
+                "Post",
+                "Put",
+                "Delete"
+            ]
+        },
+        {
             "DownstreamPathTemplate": "/v1.0/invoke/notification/method/notification/{userId}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
