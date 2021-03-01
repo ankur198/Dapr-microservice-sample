@@ -65,7 +65,7 @@ namespace OrderService.Controllers
                 nextOrderState.Value += 1;
                 await nextOrderState.SaveAsync();
 
-                await UpdateOrCreateOrder(client, newOrder);
+                await UpdateOrCreateOrder(client, newOrder, "orderPlaced");
 
                 return Created($"{userId}/my/{newOrder.Id}", newOrder);
             }
@@ -90,7 +90,7 @@ namespace OrderService.Controllers
 
                 var updatedOrder = order with { ProfessionalId = professionalId, Status = Order.OrderStatus.WaitingForConfirmation };
 
-                await UpdateOrCreateOrder(client, updatedOrder);
+                await UpdateOrCreateOrder(client, updatedOrder, "orderAssigned");
 
                 return Ok(updatedOrder);
             }
@@ -122,7 +122,7 @@ namespace OrderService.Controllers
 
                 var updatedOrder = order with { Status = Order.OrderStatus.Approved };
 
-                await UpdateOrCreateOrder(client, updatedOrder);
+                await UpdateOrCreateOrder(client, updatedOrder, "orderApproved");
 
                 return Ok(updatedOrder);
             }
@@ -146,7 +146,7 @@ namespace OrderService.Controllers
 
                 var updatedOrder = order with { Status = Order.OrderStatus.Rejected };
 
-                await UpdateOrCreateOrder(client, updatedOrder);
+                await UpdateOrCreateOrder(client, updatedOrder, "orderRejected");
 
                 return Ok(updatedOrder);
             }
@@ -170,7 +170,7 @@ namespace OrderService.Controllers
 
                 var updatedOrder = order with { Status = Order.OrderStatus.Completed };
 
-                await UpdateOrCreateOrder(client, updatedOrder);
+                await UpdateOrCreateOrder(client, updatedOrder, "orderCompleted");
 
                 return Ok(updatedOrder);
             }
@@ -180,7 +180,7 @@ namespace OrderService.Controllers
             }
         }
 
-        private static async Task UpdateOrCreateOrder(DaprClient client, Order order)
+        private static async Task UpdateOrCreateOrder(DaprClient client, Order order, string topicName)
         {
             var userState = await client.GetStateEntryAsync<List<Order>>(StoreName, $"user-{order.UserId}");
             var allState = await client.GetStateEntryAsync<List<Order>>(StoreName, "allOrders");
@@ -197,6 +197,7 @@ namespace OrderService.Controllers
             }
 
             await Task.WhenAll(tasks);
+            await client.PublishEventAsync<Order>(PubSubName, topicName, order);
 
             async Task UpdateOrCreateOrderForState(Dapr.StateEntry<List<Order>> state)
             {
